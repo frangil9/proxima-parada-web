@@ -1,0 +1,7 @@
+.content {
+  background-color: #4d4d4d;
+  position:absolute;      
+  height: 100%;
+  width: 100%; 
+  z-index:-1;    
+}

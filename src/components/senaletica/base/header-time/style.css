@@ -1,0 +1,119 @@
+.header {
+  background-color: #ffffff;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  width: 100%;
+  height: 120px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; 
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ca1 {
+  background-color: #ffd251;
+  width: 15%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-ca1 {
+  height:0px;
+  border-bottom:60px solid transparent;  /* izquierda flecha */
+  border-top:60px solid transparent; /* derecha flecha */
+  border-left:25px solid #ffd251; /* base flecha y color*/
+  font-size:0px;
+  line-height:0px;
+}
+
+.text-ca1 {
+  font-size: 72px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: center;
+  color: #4d4d4d;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: #666666;
+  margin-left: 40px;
+  margin-top: 10px;
+}
+
+.subtitle {
+  font-size: 60px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: #666666;
+  margin-left: 40px;
+}
+
+.next {
+  background-color: #ffffff;
+  width: 65%;
+  height: 120px;
+}
+
+.time {
+  background-color: #e6e6e6;
+  width: 20%;
+  height: 120px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.arrow-time {
+  height:0px;
+  border-bottom:60px solid transparent;  /* izquierda flecha */
+  border-top:60px solid transparent; /* derecha flecha */
+  border-left:25px solid #ffffff; /* base flecha y color*/
+  font-size:0px;
+  line-height:0px;
+}
+
+.minutes {
+  font-size: 90px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: center;
+  color: #4d4d4d;
+  margin: 0 auto;
+}
+
+.min {
+  font-size: 30px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: #4d4d4d;
+  margin-bottom: 20px;
+}
+
+.content-min {
+  margin: 0 auto;
+}
