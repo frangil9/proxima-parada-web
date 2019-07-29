@@ -6,18 +6,19 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import { Progress } from 'reactstrap';
 import Tooltip from '@material-ui/core/Tooltip';
 import DropzoneFile from '../dropzone-file';
+import { addPublicationThunk } from '../../../redux/actions/publications';
 
 class UploadDialog extends Component {
 
   state = {
     title: '',
     description: '',
+    imgPreview: '',
     open: false,
     progress: 0
   };
@@ -40,13 +41,15 @@ class UploadDialog extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { uploadCurrent } = this.props;
+    const { currentUpload, onAddPublicationThunk } = this.props;
     const { title, description } = this.state;
     const data = {
       title,
       description,
-      ...uploadCurrent
+      ...currentUpload
     };
+    onAddPublicationThunk(data);
+    this.handleClose();
     console.log(data)
   }
 
@@ -58,16 +61,16 @@ class UploadDialog extends Component {
   }
 
   render() {
-    const { uploadCurrent } = this.props;
+    const { currentUpload, icon, tooltip } = this.props;
     return (
       <Fragment>
-        <Tooltip title="Subir video">
+        <Tooltip title={tooltip}>
           <IconButton
             className="menu"
             color="inherit"
             onClick={this.handleClickOpen}
           >
-            <i className="fa fa-video-camera"></i>
+            <i className={icon}></i>
           </IconButton>
         </Tooltip>
         <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
@@ -89,7 +92,7 @@ class UploadDialog extends Component {
                 onChange={this.handleInputChange}
                 fullWidth
               />
-              {uploadCurrent.thubnailUrl && <div className="card"><img src={uploadCurrent.thubnailUrl} alt="thub" /></div>}
+              {currentUpload.thubnailUrl && <div className="card"><img src={currentUpload.thubnailUrl} alt="thub" /></div>}
               <DropzoneFile handleChangeProgress={this.handleChangeProgress} />
               {this.state.progress > 0 && <Progress striped value={this.state.progress}>{this.state.progress}%</Progress>}
             </form>
@@ -110,8 +113,16 @@ class UploadDialog extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    uploadCurrent: state.uploadCurrent
+    currentUpload: state.currentUpload
   };
 };
 
-export default connect(mapStateToProps, null)(UploadDialog);
+const mapDispatchToProps = (dispatch) => {
+  return {
+      onAddPublicationThunk: (data) => {
+          dispatch(addPublicationThunk(data));
+      }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UploadDialog);

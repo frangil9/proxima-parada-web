@@ -4,10 +4,6 @@ import point from '../../../../assets/images/point.png';
 
 class PointInterest extends Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		//setTimeout(() => {
 		//this.props.history.push('/base');

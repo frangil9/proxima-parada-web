@@ -1,0 +1,19 @@
+.content-main-video {
+  background-color: #4d4d4d;   
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* Decrease this value for cross-browser compatibility */
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: -1;
+}
+
+.list-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

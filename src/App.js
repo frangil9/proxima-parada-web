@@ -32,7 +32,7 @@ class App extends Component {
               <Route exact path="/point" component={PointInterest} />
               <Route exact path="/arrival" component={ArrivalTime} />
               <Route exact path="/detour" component={Detour} />
-              <Route exact path="/management" component={ManagementContent} />
+              <Route path="/management" component={ManagementContent} />
             </Switch>
           </BrowserRouter>
         </Provider>

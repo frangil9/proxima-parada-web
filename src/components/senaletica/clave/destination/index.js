@@ -4,10 +4,6 @@ import flag from '../../../../assets/images/flag.png';
 
 class Destination extends Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		//setTimeout(() => {
 		//this.props.history.push('/base');

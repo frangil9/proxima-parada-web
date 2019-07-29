@@ -4,10 +4,6 @@ import arrow from '../../../../assets/images/arrow.png';
 
 class Detour extends Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		//setTimeout(() => {
 		//this.props.history.push('/base');

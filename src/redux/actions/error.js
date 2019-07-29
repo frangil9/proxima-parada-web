@@ -1,4 +1,4 @@
-export const error = (error) => {
+export const handleError = (error) => {
     return {
         type: 'ERROR',
         payload: error

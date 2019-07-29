@@ -1,17 +1,21 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import error from './reducers/error';
 import loading from './reducers/loading';
-import current from './reducers/stop';
+import currentStop from './reducers/stop';
 import countVideo from './reducers/count-video';
-import uploadCurrent from './reducers/upload-current';
+import currentUpload from './reducers/upload-current';
+import publications from './reducers/publications';
+import currentItem from './reducers/item-current';
 import thunk from 'redux-thunk';
 
 const appReducer = combineReducers({
     loading,
     error,
-    current,
     countVideo,
-    uploadCurrent
+    currentStop,
+    currentUpload,
+    currentItem,
+    publications
 });
 
 const rootReducer = (state, action) => {

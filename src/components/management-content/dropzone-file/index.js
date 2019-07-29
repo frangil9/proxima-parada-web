@@ -53,8 +53,6 @@ class DropzoneFile extends Component {
       public_id
     };
     onUploadCurrent(metadata);
-    console.log(res)
-    console.log(metadata)
   }
 
   render() {

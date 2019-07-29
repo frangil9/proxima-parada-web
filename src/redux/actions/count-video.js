@@ -1,7 +1,11 @@
-const countVideo = () => {
+export const countVideo = () => {
     return {
         type: 'COUNT_VIDEO'
     };
 };
 
-export default countVideo;
+export const countReset = () => {
+    return {
+        type: 'COUNT_RESET'
+    };
+};

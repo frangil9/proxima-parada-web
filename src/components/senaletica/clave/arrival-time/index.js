@@ -4,10 +4,6 @@ import clock from '../../../../assets/images/clock.png';
 
 class ArrivalTime extends Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	componentDidMount() {
 		//setTimeout(() => {
 		//this.props.history.push('/base');

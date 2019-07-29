@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './style.css';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -27,11 +27,12 @@ class HeaderManagement extends Component {
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
+    const item = {};
     return (
       <div className="header-manage-video">
         <SearchBar />
         <div>
-          <UploadDialog />
+          <UploadDialog icon="fa fa-video-camera" tooltip="Subir video" item={item} />
           <IconButton
             aria-haspopup="true"
             onClick={this.handleMenu}
