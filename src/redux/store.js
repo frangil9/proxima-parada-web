@@ -6,6 +6,8 @@ import countVideo from './reducers/count-video';
 import currentUpload from './reducers/upload-current';
 import publications from './reducers/publications';
 import currentItem from './reducers/item-current';
+import nextsStops from './reducers/nexts_stops';
+import stateTravel from './reducers/state-travel';
 import thunk from 'redux-thunk';
 
 const appReducer = combineReducers({
@@ -15,7 +17,9 @@ const appReducer = combineReducers({
     currentStop,
     currentUpload,
     currentItem,
-    publications
+    publications,
+    nextsStops,
+    stateTravel
 });
 
 const rootReducer = (state, action) => {

@@ -6,15 +6,30 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import UploadDialog from '../upload-dialog';
 import SearchBar from '../search-bar';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 class HeaderManagement extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      anchorEl: null
+      anchorEl: null,
+      openDialogCreate: false
     };
   }
+
+  handleOpenDialogCreate = () => {
+    this.setState({
+      openDialogCreate: true
+    });
+  };
+
+  handleCloseDialogCreate = () => {
+    this.setState({
+      openDialogCreate: false
+    });
+  };
 
   handleMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -27,12 +42,20 @@ class HeaderManagement extends Component {
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-    const item = {};
     return (
       <div className="header-manage-video">
         <SearchBar />
         <div>
-          <UploadDialog icon="fa fa-video-camera" tooltip="Subir video" item={item} />
+          <Tooltip title="Subir contenido">
+            <IconButton
+              className="menu"
+              color="inherit"
+              onClick={this.handleOpenDialogCreate}
+            >
+              <i className="fa fa-video-camera"></i>
+            </IconButton>
+          </Tooltip>
+          {this.state.openDialogCreate && <UploadDialog open={this.state.openDialogCreate} handleCloseDialog={this.handleCloseDialogCreate} title="Subir contenido" />}
           <IconButton
             aria-haspopup="true"
             onClick={this.handleMenu}

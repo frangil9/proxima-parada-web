@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import './style.css';
 import arrow from '../../../../assets/images/arrow.png';
+import { connect } from 'react-redux';
+import MapContainer from '../../map';
 
 class Detour extends Component {
 
-	componentDidMount() {
-		//setTimeout(() => {
-		//this.props.history.push('/base');
-		//}, 5000);
+	componentDidUpdate(prevProps, prevState) {
+		const { stateTravel, } = this.props;
+		if (prevProps.stateTravel !== stateTravel) {
+			if (stateTravel.isInPolyDetour === false) {
+				this.props.history.push('/base');
+			}
+		}
 	}
 
 	render() {
@@ -29,10 +34,33 @@ class Detour extends Component {
 				<div className="content-stop">
 					<span className="title-stop">Joaquín Requena</span>
 				</div>
+				<div className="main-detour">
+					<div className="title-main-detour">
+						Desde
+          </div>
+					<div className="title-main-detour-stop">
+						Joaquín Requena
+						</div>
+				</div>
+				<div className="main-detour">
+					<div className="title-main-detour">
+						Hasta
+          </div>
+					<div className="title-main-detour-stop">
+						Arenal Grande
+						</div>
+				</div>
+				<MapContainer />
 			</div>
 		);
 	}
 }
 
-export default Detour;
+const mapStateToProps = (state) => {
+	return {
+		stateTravel: state.stateTravel
+	};
+};
+
+export default connect(mapStateToProps, null)(Detour);
 

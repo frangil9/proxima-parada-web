@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import './style.css';
 import point from '../../../../assets/images/point.png';
+import { connect } from 'react-redux';
+import MapContainer from '../../map';
 
 class PointInterest extends Component {
 
-	componentDidMount() {
-		//setTimeout(() => {
-		//this.props.history.push('/base');
-		//}, 5000);
+	componentDidUpdate(prevProps, prevState) {
+		const { stateTravel, } = this.props;
+		if (prevProps.stateTravel !== stateTravel) {
+			if (stateTravel.isInPolyFacultad === false && stateTravel.isInPolyIntendencia === false
+				&& stateTravel.isInPolyCagancha === false && stateTravel.isInPolyIndependencia === false) {
+				this.props.history.push('/base');
+			}
+		}
 	}
 
 	render() {
+		const { stateTravel, } = this.props;
 		return (
 			<div className="content-point">
 				<div className="header-point">
@@ -22,12 +29,22 @@ class PointInterest extends Component {
 					</div>
 				</div>
 				<div className="content-main-point">
-					Facultad de Derecho
+					{stateTravel.isInPolyFacultad === true && 'Facultad de Derecho'}
+					{stateTravel.isInPolyIntendencia === true && 'Intendencia de Montevideo'}
+					{stateTravel.isInPolyCagancha === true && 'Plaza Cagancha'}
+					{stateTravel.isInPolyIndependencia === true && 'Plaza Independencia'}
 				</div>
+				<MapContainer />
 			</div>
 		);
 	}
 }
 
-export default PointInterest;
+const mapStateToProps = (state) => {
+	return {
+		stateTravel: state.stateTravel
+	};
+};
+
+export default connect(mapStateToProps, null)(PointInterest);
 

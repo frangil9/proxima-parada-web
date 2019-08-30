@@ -3,34 +3,32 @@ import './style.css';
 import { connect } from 'react-redux';
 import { countVideo, countReset } from '../../../redux/actions/count-video';
 import MP4Content from '../base/mp4-content';
-import HeaderTime from './header-time';
-import HeaderDestination from './header-destination';
-import HeaderNext from './header-next';
-import HeaderStep from './header-step';
+import HeaderContent from './header-content';
+import OutTravel from './out-travel';
 import { getPublicationsThunk } from '../../../redux/actions/publications';
-
+import MapContainer from '../map';
 
 class BaseContainer extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      orderViewHeader: 1
+      orderView: 1
     };
     this.handleCount = this.handleCount.bind(this);
   }
 
   componentDidMount() {
-    const { onGetPublicationsThunk } = this.props;
+    const { onGetPublicationsThunk} = this.props;
     onGetPublicationsThunk();
-    let orderViewHeader = 1;
+    let orderView = 1;
     this.interval = setInterval(() => {
       this.setState({
-        orderViewHeader: orderViewHeader
+        orderView: orderView
       });
-      orderViewHeader++;
-      if (orderViewHeader > 4) {
-        orderViewHeader = 1;
+      orderView++;
+      if (orderView > 4) {
+        orderView = 1;
       }
     }, 5000);
   }
@@ -38,6 +36,66 @@ class BaseContainer extends Component {
   componentWillUnmount() {
     if (this.interval) {
       clearInterval(this.interval);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const {stateTravel, sendSocket} = this.props;
+    if (prevProps.stateTravel !== stateTravel) {
+      if (stateTravel.isInRadiusCircleStop1 === true) {
+        sendSocket(1);
+      }
+      if (stateTravel.isInRadiusCircleStop2 === true) {
+        sendSocket(2);
+      }
+      if (stateTravel.isInRadiusCircleStop3 === true) {
+        sendSocket(3);
+        this.props.history.push('/arrival');
+      }
+      if (stateTravel.isInRadiusCircleStop4 === true) {
+        sendSocket(4);
+      }
+      if (stateTravel.isInRadiusCircleStop5 === true) {
+        sendSocket(5);
+      }
+      if (stateTravel.isInRadiusCircleStop6 === true) {
+        sendSocket(6);
+      }
+      if (stateTravel.isInRadiusCircleStop7 === true) {
+        sendSocket(7);
+      }
+      if (stateTravel.isInRadiusCircleStop8 === true) {
+        sendSocket(8);
+        this.props.history.push('/arrival');
+      }
+      if (stateTravel.isInRadiusCircleStop9 === true) {
+        sendSocket(9);
+      }
+      if (stateTravel.isInRadiusCircleStop10 === true) {
+        sendSocket(10);
+      }
+      if (stateTravel.isInRadiusCircleStop11 === true) {
+        sendSocket(11);
+      }
+      if (stateTravel.isInRadiusCircleStop12 === true) {
+        sendSocket(12);
+        this.props.history.push('/destination');
+      }
+      if (stateTravel.isInPolyDetour === true) {
+        this.props.history.push('/detour');
+      }
+      if (stateTravel.isInPolyFacultad === true) {
+        this.props.history.push('/point');
+      }
+      if (stateTravel.isInPolyIntendencia === true) {
+        this.props.history.push('/point');
+      }
+      if (stateTravel.isInPolyCagancha === true) {
+        this.props.history.push('/point');
+      }
+      if (stateTravel.isInPolyIndependencia === true) {
+        this.props.history.push('/point');
+      }
     }
   }
 
@@ -51,25 +109,16 @@ class BaseContainer extends Component {
   }
 
   render() {
-    const { currentStop, publications, countVideo } = this.props;
+    const { currentStop, publications, countVideo, stateTravel } = this.props;
     const currentSrc = publications.length > 0 ? publications[countVideo] : undefined;
-    const cloneCurrent = {...currentSrc};
-    const clone = {...cloneCurrent.metadata};
+    const cloneCurrent = { ...currentSrc };
+    const clone = { ...cloneCurrent.metadata };
+    console.log(stateTravel)
     return (
       <div className="content">
-        {
-          this.state.orderViewHeader === 1 && (<HeaderTime current={currentStop} />)
-        }
-        {
-          this.state.orderViewHeader === 2 && (<HeaderDestination />)
-        }
-        {
-          this.state.orderViewHeader === 3 && (<HeaderNext />)
-        }
-        {
-          this.state.orderViewHeader === 4 && (<HeaderStep current={currentStop} />)
-        }
-        { clone.url !== undefined && <MP4Content source={clone.url} handleCount={this.handleCount} /> }
+        {stateTravel.isInPolyCentral === false ? <OutTravel /> : <HeaderContent orderView={this.state.orderView} currentStop={currentStop} />}
+        {clone.url !== undefined && <MP4Content source={clone.url} handleCount={this.handleCount} />}
+        <MapContainer />
       </div>
     );
   }
@@ -79,7 +128,8 @@ const mapStateToProps = (state) => {
   return {
     currentStop: state.currentStop,
     countVideo: state.countVideo,
-    publications: state.publications
+    publications: state.publications,
+    stateTravel: state.stateTravel
   };
 };
 
@@ -93,7 +143,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onGetPublicationsThunk: () => {
       dispatch(getPublicationsThunk());
-  }
+    }
   };
 };
 

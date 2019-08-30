@@ -48,3 +48,51 @@
   color: #ffffff;
   margin-left: 20px;
 }
+
+.main-arrival {
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 20px;
+}
+
+.item-arrival {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.min-arrival {
+  font-size: 30px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.minutes-arrival {
+  font-size: 90px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  margin: 0 auto;
+}
+
+.item-text-arrival {
+  font-size: 66px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.13;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+  margin-left: 20px;
+}

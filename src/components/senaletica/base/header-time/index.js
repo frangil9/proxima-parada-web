@@ -20,7 +20,7 @@ const HeaderTime = (props) => {
       <div className="time">
         <span className="arrow-time"></span>
         <div className="content-min">
-          <span className="minutes">2</span>
+          <span className="minutes">0</span>
           <span className="min">min.</span>
         </div>
       </div>

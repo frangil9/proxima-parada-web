@@ -5,3 +5,9 @@
   width: 100%; 
   z-index:-1;    
 }
+
+.content-map {
+  width: 400px;
+  height: 250px;
+  position: absolute;
+}

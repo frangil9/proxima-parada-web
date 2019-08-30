@@ -1,16 +1,34 @@
 import React, { Component } from 'react';
 import './style.css';
 import clock from '../../../../assets/images/clock.png';
+import { connect } from 'react-redux';
+
+const ItemArrival = (props) => {
+	const { item } = props;
+	return (
+		<div className="item-arrival">
+			<div className="item-text-arrival">
+				{item.next_stop}
+			</div>
+			<div>
+				<span className="minutes-arrival">0</span>
+				<span className="min-arrival">min.</span>
+			</div>
+		</div>
+	);
+}
 
 class ArrivalTime extends Component {
 
 	componentDidMount() {
-		//setTimeout(() => {
-		//this.props.history.push('/base');
-		//}, 5000);
+		setTimeout(() => {
+			this.props.history.push('/base');
+		}, 15000);
 	}
 
 	render() {
+		const { nextsStops } = this.props;
+
 		return (
 			<div className="content-arrival">
 				<div className="header-arrival">
@@ -23,10 +41,19 @@ class ArrivalTime extends Component {
           </div>
 					</div>
 				</div>
+				<div className="main-arrival">
+					{nextsStops.filter((elem, index) => index < 4).map(item => <ItemArrival key={item.number_stop} item={item} />)}
+				</div>
 			</div>
 		);
 	}
 }
 
-export default ArrivalTime;
+const mapStateToProps = (state) => {
+	return {
+		nextsStops: state.nextsStops
+	};
+};
+
+export default connect(mapStateToProps, null)(ArrivalTime);
 
