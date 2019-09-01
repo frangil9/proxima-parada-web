@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Player, ControlBar } from 'video-react';
+import './video-react.css';
 
 class MP4Content extends Component {
 
