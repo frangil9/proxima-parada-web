@@ -13,12 +13,13 @@ import store from './redux/store';
 import io from 'socket.io-client';
 import current from './redux/actions/stop';
 import nextsStops from './redux/actions/nexts_stops';
+import {API_URL} from './utils/config';
 
 var socket;
 class App extends Component {
 
   componentDidMount() {
-    socket = io('http://localhost:3001');
+    socket = io(API_URL);
     socket.on('message', data => {
       store.dispatch(current(data.current));
       store.dispatch(nextsStops(data.nexts_stops));
