@@ -11,7 +11,7 @@ class PointInterest extends Component {
 		if (prevProps.stateTravel !== stateTravel) {
 			if (stateTravel.isInPolyFacultad === false && stateTravel.isInPolyIntendencia === false
 				&& stateTravel.isInPolyCagancha === false && stateTravel.isInPolyIndependencia === false) {
-				this.props.history.push('/base');
+				this.props.history.push('/demo/base');
 			}
 		}
 	}
