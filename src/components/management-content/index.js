@@ -13,8 +13,8 @@ class ManagementContent extends Component {
         <HeaderManagement />
         <BrowserRouter>
             <Switch>
-              <Route exact path="/demo/management/item/:id" component={VideoDetail} />
-              <Route exact path="/demo/management/items" component={VideoList} />
+              <Route exact path="/management/item/:id" component={VideoDetail} />
+              <Route exact path="/management/items" component={VideoList} />
             </Switch>
           </BrowserRouter>
       </div>

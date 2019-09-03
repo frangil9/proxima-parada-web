@@ -19,7 +19,7 @@ var socket;
 class App extends Component {
 
   componentDidMount() {
-    socket = io('https://67.205.155.24:3001');
+    socket = io(API_URL);
     socket.on('message', data => {
       store.dispatch(current(data.current));
       store.dispatch(nextsStops(data.nexts_stops));
@@ -36,15 +36,15 @@ class App extends Component {
         <Provider store={store}>
           <BrowserRouter>
             <Switch>
-              <Route exact path="/demo/base" render={(props) => (
+              <Route exact path="/" render={(props) => (
                 <BaseContainer sendSocket={this.sendSocket} {...props} />
               )} />
-              <Route exact path="/demo/destination" component={Destination} />
-              <Route exact path="/demo/point" component={PointInterest} />
-              <Route exact path="/demo/arrival" component={ArrivalTime} />
-              <Route exact path="/demo/detour" component={Detour} />
-              <Route exact path="/demo/map" component={MapContainer} />
-              <Route path="/demo/management" component={ManagementContent} />
+              <Route exact path="/destination" component={Destination} />
+              <Route exact path="/point" component={PointInterest} />
+              <Route exact path="/arrival" component={ArrivalTime} />
+              <Route exact path="/detour" component={Detour} />
+              <Route exact path="/map" component={MapContainer} />
+              <Route path="/management" component={ManagementContent} />
             </Switch>
           </BrowserRouter>
         </Provider>

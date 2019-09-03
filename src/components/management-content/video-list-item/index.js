@@ -60,10 +60,10 @@ class VideoListItem extends Component {
     return (
       <li className="list-group-item">
         <div className="video-list media">
-          <div className="media-left" onClick={() => goTo(`/demo/management/item/${item._id}`)}>
+          <div className="media-left" onClick={() => goTo(`/management/item/${item._id}`)}>
             <img className="media-object" src={item.metadata.thubnailUrl} />
           </div>
-          <div className="media-body" onClick={() => goTo(`/demo/management/item/${item._id}`)}>
+          <div className="media-body" onClick={() => goTo(`/management/item/${item._id}`)}>
             <div className="title-item">{item.title}</div>
             <div className="description-item">{item.description}</div>
           </div>

@@ -50,7 +50,7 @@ class BaseContainer extends Component {
       }
       if (stateTravel.isInRadiusCircleStop3 === true) {
         sendSocket(3);
-        this.props.history.push('/demo/arrival');
+        this.props.history.push('/arrival');
       }
       if (stateTravel.isInRadiusCircleStop4 === true) {
         sendSocket(4);
@@ -66,7 +66,7 @@ class BaseContainer extends Component {
       }
       if (stateTravel.isInRadiusCircleStop8 === true) {
         sendSocket(8);
-        this.props.history.push('/demo/arrival');
+        this.props.history.push('/arrival');
       }
       if (stateTravel.isInRadiusCircleStop9 === true) {
         sendSocket(9);
@@ -79,22 +79,22 @@ class BaseContainer extends Component {
       }
       if (stateTravel.isInRadiusCircleStop12 === true) {
         sendSocket(12);
-        this.props.history.push('/demo/destination');
+        this.props.history.push('/destination');
       }
       if (stateTravel.isInPolyDetour === true) {
-        this.props.history.push('/demo/detour');
+        this.props.history.push('/detour');
       }
       if (stateTravel.isInPolyFacultad === true) {
-        this.props.history.push('/demo/point');
+        this.props.history.push('/point');
       }
       if (stateTravel.isInPolyIntendencia === true) {
-        this.props.history.push('/demo/point');
+        this.props.history.push('/point');
       }
       if (stateTravel.isInPolyCagancha === true) {
-        this.props.history.push('/demo/point');
+        this.props.history.push('/point');
       }
       if (stateTravel.isInPolyIndependencia === true) {
-        this.props.history.push('/demo/point');
+        this.props.history.push('/point');
       }
     }
   }

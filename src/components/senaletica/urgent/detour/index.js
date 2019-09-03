@@ -10,7 +10,7 @@ class Detour extends Component {
 		const { stateTravel, } = this.props;
 		if (prevProps.stateTravel !== stateTravel) {
 			if (stateTravel.isInPolyDetour === false) {
-				this.props.history.push('/demo/base');
+				this.props.history.push('/');
 			}
 		}
 	}

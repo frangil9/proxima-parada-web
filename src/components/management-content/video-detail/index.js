@@ -15,7 +15,7 @@ class VideoDetail extends Component {
   }
 
   goTo = () => {
-    this.props.history.push('/demo/management/items');
+    this.props.history.push('/management/items');
   }
 
   render() {

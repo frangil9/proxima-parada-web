@@ -22,7 +22,7 @@ class ArrivalTime extends Component {
 
 	componentDidMount() {
 		setTimeout(() => {
-			this.props.history.push('/demo/base');
+			this.props.history.push('/');
 		}, 15000);
 	}
 
