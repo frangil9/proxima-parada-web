@@ -19,7 +19,7 @@ var socket;
 class App extends Component {
 
   componentDidMount() {
-    socket = io('http://67.205.155.24:3001');
+    socket = io('https://67.205.155.24:3001');
     socket.on('message', data => {
       store.dispatch(current(data.current));
       store.dispatch(nextsStops(data.nexts_stops));
