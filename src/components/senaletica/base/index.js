@@ -113,7 +113,6 @@ class BaseContainer extends Component {
     const currentSrc = publications.length > 0 ? publications[countVideo] : undefined;
     const cloneCurrent = { ...currentSrc };
     const clone = { ...cloneCurrent.metadata };
-    console.log(stateTravel)
     return (
       <div className="content">
         {stateTravel.isInPolyCentral === false ? <OutTravel /> : <HeaderContent orderView={this.state.orderView} currentStop={currentStop} />}

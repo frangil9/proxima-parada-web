@@ -68,7 +68,7 @@ class MapContainer extends Component {
           isInPolyIndependencia: this.areaPolyIndependencia(),
           isInPolyDetour: this.areaPolyDetour()
         }
-        this.calculateRoute(map);
+        //this.calculateRoute(map);
         const { onStateTravel } = this.props;
         onStateTravel(stateTravel);
       });
