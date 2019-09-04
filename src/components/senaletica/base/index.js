@@ -7,19 +7,27 @@ import HeaderContent from './header-content';
 import OutTravel from './out-travel';
 import { getPublicationsThunk } from '../../../redux/actions/publications';
 import MapContainer from '../map';
+import Fullscreen from "react-full-screen";
+import IconButton from '@material-ui/core/IconButton';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
 
 class BaseContainer extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      orderView: 1
+      orderView: 1,
+      isFull: false
     };
     this.handleCount = this.handleCount.bind(this);
   }
 
+  goFull = () => {
+    this.setState({ isFull: true });
+  }
+
   componentDidMount() {
-    const { onGetPublicationsThunk} = this.props;
+    const { onGetPublicationsThunk } = this.props;
     onGetPublicationsThunk();
     let orderView = 1;
     this.interval = setInterval(() => {
@@ -40,7 +48,7 @@ class BaseContainer extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {stateTravel, sendSocket} = this.props;
+    const { stateTravel, sendSocket } = this.props;
     if (prevProps.stateTravel !== stateTravel) {
       if (stateTravel.isInRadiusCircleStop1 === true) {
         sendSocket(1);
@@ -115,8 +123,24 @@ class BaseContainer extends Component {
     const clone = { ...cloneCurrent.metadata };
     return (
       <div className="content">
-        {stateTravel.isInPolyCentral === false ? <OutTravel /> : <HeaderContent orderView={this.state.orderView} currentStop={currentStop} />}
-        {clone.url !== undefined && <MP4Content source={clone.url} handleCount={this.handleCount} />}
+        <Fullscreen
+          enabled={this.state.isFull}
+          onChange={isFull => this.setState({ isFull })}
+        >
+          <div className="full-screenable-node">
+            {stateTravel.isInPolyCentral === false ? <OutTravel /> : <HeaderContent orderView={this.state.orderView} currentStop={currentStop} />}
+            {clone.url !== undefined && <MP4Content source={clone.url} handleCount={this.handleCount} />}
+          </div>
+        </Fullscreen>
+        <div className="button-fullscreen">
+          <IconButton
+            aria-haspopup="true"
+            onClick={this.goFull}
+            color="inherit"
+          >
+            <FullscreenIcon />
+          </IconButton>
+        </div>
         <MapContainer />
       </div>
     );

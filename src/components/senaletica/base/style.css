@@ -6,8 +6,9 @@
   z-index:-1;    
 }
 
-.content-map {
-  width: 400px;
-  height: 250px;
-  position: absolute;
+.button-fullscreen {    
+  position:absolute;     
+  bottom:1px; 
+  width:99%;  
+  text-align:right;
 }

@@ -53,7 +53,7 @@ class MP4Content extends Component {
       <div>
         <Player ref={(player) => { this.player = player }} autoPlay>
           <source src={source} />
-          <ControlBar autoHide={false} />
+          <ControlBar autoHide={false} disableCompletely={true} />
         </Player>
       </div>
     );
