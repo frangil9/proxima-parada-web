@@ -4,14 +4,14 @@ import clock from '../../../../assets/images/clock.png';
 import { connect } from 'react-redux';
 
 const ItemArrival = (props) => {
-	const { item } = props;
+	const { item, sumTime } = props;
 	return (
 		<div className="item-arrival">
 			<div className="item-text-arrival">
 				{item.next_stop}
 			</div>
 			<div>
-				<span className="minutes-arrival">0</span>
+				<span className="minutes-arrival">{sumTime}</span>
 				<span className="min-arrival">min.</span>
 			</div>
 		</div>
@@ -28,7 +28,7 @@ class ArrivalTime extends Component {
 
 	render() {
 		const { nextsStops } = this.props;
-
+		let sumTime = 0;
 		return (
 			<div className="content-arrival">
 				<div className="header-arrival">
@@ -42,7 +42,10 @@ class ArrivalTime extends Component {
 					</div>
 				</div>
 				<div className="main-arrival">
-					{nextsStops.filter((elem, index) => index < 4).map(item => <ItemArrival key={item.number_stop} item={item} />)}
+					{nextsStops.filter((elem, index) => index < 4).map((item, index) => {
+						sumTime += item.time_next_stop;
+						return (<ItemArrival key={item.number_stop} item={item} sumTime={sumTime} />);
+					})}
 				</div>
 			</div>
 		);

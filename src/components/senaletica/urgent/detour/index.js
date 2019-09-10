@@ -50,7 +50,7 @@ class Detour extends Component {
 						Arenal Grande
 						</div>
 				</div>
-				<MapContainer />
+				<MapContainer withoutStyle={true} />
 			</div>
 		);
 	}

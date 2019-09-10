@@ -34,7 +34,7 @@ class PointInterest extends Component {
 					{stateTravel.isInPolyCagancha === true && 'Plaza Cagancha'}
 					{stateTravel.isInPolyIndependencia === true && 'Plaza Independencia'}
 				</div>
-				<MapContainer />
+				<MapContainer withoutStyle={true} />
 			</div>
 		);
 	}

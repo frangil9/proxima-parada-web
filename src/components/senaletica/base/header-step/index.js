@@ -6,10 +6,48 @@ import Steps, { Step } from 'rc-steps';
 import 'rc-steps/assets/index.css';
 import 'rc-steps/assets/iconfont.css';
 
+
 class HeaderStep extends Component {
 
+  constructor(props) {
+    super(props);
+    const { nextsStops } = this.props;
+    this.state = {
+      current: nextsStops[0],
+      index: 0,
+      arrivalTime: nextsStops[0].time_next_stop
+    }
+  }
+
+  componentDidMount() {
+    const { nextsStops } = this.props;
+    this.count = 1;
+    const nextsStopsFilter = nextsStops.filter((elem, index) => index < 5);
+    let sumTime = nextsStops[0].time_next_stop;
+    this.intervalHeadStep = setInterval(() => {
+      if (this.count <= nextsStopsFilter.length - 1) {
+        sumTime = sumTime + nextsStopsFilter[this.count].time_next_stop;
+        this.setState({
+          index: this.count,
+          current: nextsStopsFilter[this.count],
+          arrivalTime: sumTime
+        });
+        this.count++
+        if (this.count > nextsStopsFilter.length - 1) {
+          clearInterval(this.intervalHeadStep);
+        }
+      }
+    }, 1000);
+  }
+
+  componentWillMount() {
+    if (this.intervalHeadStep) {
+      clearInterval(this.intervalHeadStep);
+    }
+  }
+
   render() {
-    const { current } = this.props;
+    const { current, index, arrivalTime } = this.state;
     return (
       <div className="header">
         <div className="content-bus">
@@ -21,19 +59,19 @@ class HeaderStep extends Component {
             {current.next_stop}
           </div>
           <div className="content-steps">
-          <Steps labelPlacement="vertical" current={0}>
-            <Step />
-            <Step />
-            <Step />
-            <Step />
-            <Step />
-          </Steps>
+            <Steps labelPlacement="vertical" current={index}>
+              <Step />
+              <Step />
+              <Step />
+              <Step />
+              <Step />
+            </Steps>
           </div>
         </div>
         <div className="time">
           <span className="arrow-time"></span>
           <div className="content-min">
-            <span className="minutes">0</span>
+            <span className="minutes">{arrivalTime}</span>
             <span className="min">min.</span>
           </div>
         </div>

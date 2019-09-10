@@ -129,7 +129,7 @@ class BaseContainer extends Component {
         >
           <div className="full-screenable-node">
             {stateTravel.isInPolyCentral === false ? <OutTravel /> : <HeaderContent orderView={this.state.orderView} currentStop={currentStop} />}
-            {clone.url !== undefined && <MP4Content source={clone.url} handleCount={this.handleCount} />}
+            {clone.urlLocalAndroid !== undefined && <MP4Content source={clone.urlLocalAndroid} handleCount={this.handleCount} />}
           </div>
         </Fullscreen>
         <div className="button-fullscreen">
@@ -141,7 +141,7 @@ class BaseContainer extends Component {
             <FullscreenIcon />
           </IconButton>
         </div>
-        <MapContainer />
+        <MapContainer withoutStyle={true} />
       </div>
     );
   }

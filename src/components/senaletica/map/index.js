@@ -21,9 +21,10 @@ var map, currentPosition, markerCurrentPosition;
 class MapContainer extends Component {
 
   componentDidMount() {
-    this.initMap();
+    this.loadMap();
+    this.calculateRoute();
     this.intervalMap = setInterval(() => {
-      this.initMap();
+      this.loadMap();
     }, 5000);
   }
 
@@ -33,15 +34,21 @@ class MapContainer extends Component {
     }
   }
 
-  initMap() {
+  loadMap() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(pos => {
         console.log(pos);
         currentPosition = new window.google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-        map = new window.google.maps.Map(document.getElementById('map'), {
-          center: { lat: -34.893474, lng: -56.165168 },
-          zoom: 15
-        });
+        
+        if (map) {
+          map.panTo(currentPosition);
+        } else {
+          map = new window.google.maps.Map(document.getElementById('map'), {
+            center: { lat: -34.893474, lng: -56.165168 },
+            zoom: 15
+          });
+        }
+        
         markerCurrentPosition = new window.google.maps.Marker({
           position: currentPosition,
           title: 'Posición actual'
@@ -68,7 +75,6 @@ class MapContainer extends Component {
           isInPolyIndependencia: this.areaPolyIndependencia(),
           isInPolyDetour: this.areaPolyDetour()
         }
-        //this.calculateRoute(map);
         const { onStateTravel } = this.props;
         onStateTravel(stateTravel);
       });
@@ -432,16 +438,15 @@ class MapContainer extends Component {
     return isInPolyDetour;
   }
 
-  calculateRoute = (map) => {
+  calculateRoute = () => {
     const google = window.google;
 
-    let inicio = new google.maps.LatLng(-34.893474, -56.165168);
+    let origin = new google.maps.LatLng(-34.893474, -56.165168);
 
-    let fin = new google.maps.LatLng(-34.905123, -56.199971);
+    let destination = new google.maps.LatLng(-34.905123, -56.199971);
 
-    let servicioDireccion = new google.maps.DirectionsService();
+    let serviceDirections = new google.maps.DirectionsService();
     let directionsRenderer = new google.maps.DirectionsRenderer();
-    directionsRenderer.setMap(map);
 
     let wps = [];
     waypts.forEach(wp => {
@@ -452,20 +457,28 @@ class MapContainer extends Component {
       });
     });
 
-    let peticion = {
-      origin: inicio,
-      destination: fin,
+    let request = {
+      origin: origin,
+      destination: destination,
       waypoints: wps,
       optimizeWaypoints: true,
       travelMode: 'DRIVING',
     };
 
-    servicioDireccion.route(peticion, function (response, status) {
+    serviceDirections.route(request, function (response, status) {
+      directionsRenderer.setMap(map);
       directionsRenderer.setDirections(response);
+      console.log(response)
     });
   }
 
   render() {
+    const {withoutStyle} = this.props;
+    if (!withoutStyle) {
+      return (
+        <div id="map" className="content-map"></div>
+      );
+    }
     return (
       <div id="map"></div>
     );
