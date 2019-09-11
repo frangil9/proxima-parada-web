@@ -52,7 +52,7 @@ class MP4Content extends Component {
     return (
       <div>
         <Player ref={(player) => { this.player = player }} autoPlay>
-          <source src={source} />
+          <source src='http://192.168.1.104:8080/Download/STM___BRANDING___ESTASVIENDO.mp4' />
           <ControlBar autoHide={false} disableCompletely={true} />
         </Player>
       </div>
