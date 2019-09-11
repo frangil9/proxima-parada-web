@@ -41,7 +41,7 @@ class DropzoneFile extends Component {
     });
     const url = res.data.secure_url;
     const public_id = res.data.public_id;
-    const urlLocalAndroid = 'file:///sdcard/Download/'+this.state.fileSelected.name;
+    const urlLocalAndroid = 'http://localhost:8080/Download/'+this.state.fileSelected.name;
     const basename = path.basename(url, '.mp4');
     const baseUrl = 'https://res.cloudinary.com/dskfedp5z/video/upload';
     const dirname = path.dirname(url);

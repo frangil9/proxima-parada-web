@@ -11,19 +11,19 @@ class HeaderStep extends Component {
 
   constructor(props) {
     super(props);
-    const { nextsStops } = this.props;
+    const { current } = this.props;
     this.state = {
-      current: nextsStops[0],
+      current: current,
       index: 0,
-      arrivalTime: nextsStops[0].time_next_stop
+      arrivalTime: current.time_next_stop
     }
   }
 
   componentDidMount() {
-    const { nextsStops } = this.props;
+    const { nextsStops, current } = this.props;
     this.count = 1;
     const nextsStopsFilter = nextsStops.filter((elem, index) => index < 5);
-    let sumTime = nextsStops[0].time_next_stop;
+    let sumTime = current.time_next_stop;
     this.intervalHeadStep = setInterval(() => {
       if (this.count <= nextsStopsFilter.length - 1) {
         sumTime = sumTime + nextsStopsFilter[this.count].time_next_stop;
@@ -71,7 +71,7 @@ class HeaderStep extends Component {
         <div className="time">
           <span className="arrow-time"></span>
           <div className="content-min">
-            <span className="minutes">{arrivalTime}</span>
+            <span className="minutes">{arrivalTime ? arrivalTime : '0'}</span>
             <span className="min">min.</span>
           </div>
         </div>
