@@ -5,10 +5,3 @@
   width: 100%; 
   z-index:-1;    
 }
-
-.button-fullscreen {    
-  position:absolute;     
-  bottom:1px; 
-  width:99%;  
-  text-align:right;
-}

@@ -7,23 +7,15 @@ import HeaderContent from './header-content';
 import OutTravel from './out-travel';
 import { getPublicationsThunk } from '../../../redux/actions/publications';
 import MapContainer from '../map';
-import Fullscreen from "react-full-screen";
-import IconButton from '@material-ui/core/IconButton';
-import FullscreenIcon from '@material-ui/icons/Fullscreen';
 
 class BaseContainer extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      orderView: 1,
-      isFull: false
+      orderView: 1
     };
     this.handleCount = this.handleCount.bind(this);
-  }
-
-  goFull = () => {
-    this.setState({ isFull: true });
   }
 
   componentDidMount() {
@@ -123,24 +115,8 @@ class BaseContainer extends Component {
     const clone = { ...cloneCurrent.metadata };
     return (
       <div className="content">
-        <Fullscreen
-          enabled={this.state.isFull}
-          onChange={isFull => this.setState({ isFull })}
-        >
-          <div className="full-screenable-node">
-            {stateTravel.isInPolyCentral === false ? <OutTravel /> : <HeaderContent orderView={this.state.orderView} currentStop={currentStop} />}
-            {clone.urlLocalAndroid !== undefined && <MP4Content source={clone.urlLocalAndroid} handleCount={this.handleCount} />}
-          </div>
-        </Fullscreen>
-        <div className="button-fullscreen">
-          <IconButton
-            aria-haspopup="true"
-            onClick={this.goFull}
-            color="inherit"
-          >
-            <FullscreenIcon />
-          </IconButton>
-        </div>
+        {stateTravel.isInPolyCentral === false ? <OutTravel /> : <HeaderContent orderView={this.state.orderView} currentStop={currentStop} />}
+        {clone.urlLocalAndroid !== undefined && <MP4Content source={clone.urlLocalAndroid} handleCount={this.handleCount} />}
         <MapContainer withoutStyle={true} />
       </div>
     );
